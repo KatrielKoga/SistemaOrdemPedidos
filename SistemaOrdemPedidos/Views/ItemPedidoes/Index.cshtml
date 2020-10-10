@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<SistemaOrdemPedidos.Models.ItemPedido>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pedido";
 }
 
-<h2>Index</h2>
+<h2>Dados do Pedido</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Adicionar", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Cliente.Nome)
+            @Html.DisplayName("Número do Pedido")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Produto.Nome)
@@ -20,16 +20,14 @@
         <th>
             @Html.DisplayNameFor(model => model.Quantidade)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Observacoes)
-        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Cliente.Nome)
+            @Html.DisplayFor(modelItem => item.Pedido.PedidoId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Produto.Nome)
@@ -37,15 +35,19 @@
         <td>
             @Html.DisplayFor(modelItem => item.Quantidade)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.Observacoes)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ItemPedidoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ItemPedidoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ItemPedidoId })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ItemPedidoId }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.ItemPedidoId }) |
+            @Html.ActionLink("Deletar", "Delete", new { id=item.ItemPedidoId })
         </td>
     </tr>
 }
 
 </table>
+
+<div>
+    
+        @Html.ActionLink("Voltar", "Index", "Pedidoes")
+    
+</div>

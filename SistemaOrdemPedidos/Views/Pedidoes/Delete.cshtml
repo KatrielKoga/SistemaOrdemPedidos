@@ -1,0 +1,41 @@
+﻿@model SistemaOrdemPedidos.Models.Pedido
+
+@{
+    ViewBag.Title = "Fechar Pedido";
+}
+
+<h2>Fechar</h2>
+    <h4>Pedido</h4>
+
+<h3>Deseja realmente fechar este pedido?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Cliente")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Nome)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayName("Data/hora pedido")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataHora)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Fechar Pedido" class="btn btn-danger" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<SistemaOrdemPedidos.Models.Pedido>
 
 @{
-    ViewBag.Title = "Pedidos Ativos";
+    ViewBag.Title = "Pedidos";
 }
 
-<h2>Pedidos Ativos</h2>
+<h2>Pedidos</h2>
 
 <p>
-    @Html.ActionLink("Novo Pedido", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -15,7 +15,10 @@
             @Html.DisplayName("Número do Pedido")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cliente.Nome)
+            @Html.DisplayName("Cliente")
+        </th>
+        <th>
+            @Html.DisplayName("Horário Pedido" )
         </th>
         <th></th>
     </tr>
@@ -29,9 +32,12 @@
             @Html.DisplayFor(modelItem => item.Cliente.Nome)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.DataHora)
+        </td>
+        <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.PedidoId }) |
             @Html.ActionLink("Detalhes", "Details", new { id=item.PedidoId }) |
-            @Html.ActionLink("Fechar", "Delete", new { id=item.PedidoId })
+            @Html.ActionLink("Fechar Pedido", "Delete", new { id=item.PedidoId })
         </td>
     </tr>
 }

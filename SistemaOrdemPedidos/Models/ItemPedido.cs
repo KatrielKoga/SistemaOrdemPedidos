@@ -14,7 +14,6 @@ namespace SistemaOrdemPedidos.Models
         [Required]
         public float Quantidade { get; set; }
 
-        [Required]
         [Display(Name = "Observações")]
         [DataType(DataType.MultilineText)]
         public string Observacoes { get; set; }
@@ -24,7 +23,9 @@ namespace SistemaOrdemPedidos.Models
         public virtual Produto Produto { get; set; }
 
         [Required]
-        public int ClienteId { get; set; }
-        public virtual Cliente Cliente { get; set; }
+        public int PedidoId { get; set; }
+        public virtual Pedido Pedido { get; set; }
+
+        
     }
 }

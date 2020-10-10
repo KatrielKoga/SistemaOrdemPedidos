@@ -15,10 +15,16 @@ namespace SistemaOrdemPedidos.Controllers
         private SistemaOrdemPedidosContext db = new SistemaOrdemPedidosContext();
 
         // GET: ItemPedidoes
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            var itemPedidoes = db.ItemPedidoes.Include(i => i.Cliente).Include(i => i.Produto);
-            return View(itemPedidoes.ToList());
+            if(id == null)
+            {
+                var itemPedido = db.ItemPedidoes.Include(i => i.Pedido).Include(i => i.Produto);
+                return View(itemPedido.ToList());
+            }
+
+            var itemPedidoes = db.ItemPedidoes.Include(i => i.Pedido).Include(i => i.Produto);
+            return View(itemPedidoes.Where(p => p.PedidoId == id).ToList());
         }
 
         // GET: ItemPedidoes/Details/5
@@ -39,7 +45,7 @@ namespace SistemaOrdemPedidos.Controllers
         // GET: ItemPedidoes/Create
         public ActionResult Create()
         {
-            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nome");
+            ViewBag.PedidoId = new SelectList(db.Pedidoes, "PedidoId", "PedidoId");
             ViewBag.ProdutoId = new SelectList(db.Produtoes, "ProdutoId", "Nome");
             return View();
         }
@@ -49,7 +55,7 @@ namespace SistemaOrdemPedidos.Controllers
         // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemPedidoId,Quantidade,Observacoes,ProdutoId,ClienteId")] ItemPedido itemPedido)
+        public ActionResult Create([Bind(Include = "ItemPedidoId,Quantidade,Observacoes,ProdutoId,PedidoId")] ItemPedido itemPedido)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +64,7 @@ namespace SistemaOrdemPedidos.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nome", itemPedido.ClienteId);
+            ViewBag.PedidoId = new SelectList(db.Pedidoes, "PedidoId", "PedidoId", itemPedido.PedidoId);
             ViewBag.ProdutoId = new SelectList(db.Produtoes, "ProdutoId", "Nome", itemPedido.ProdutoId);
             return View(itemPedido);
         }
@@ -75,7 +81,7 @@ namespace SistemaOrdemPedidos.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nome", itemPedido.ClienteId);
+            ViewBag.PedidoId = new SelectList(db.Pedidoes, "PedidoId", "PedidoId", itemPedido.PedidoId);
             ViewBag.ProdutoId = new SelectList(db.Produtoes, "ProdutoId", "Nome", itemPedido.ProdutoId);
             return View(itemPedido);
         }
@@ -85,7 +91,7 @@ namespace SistemaOrdemPedidos.Controllers
         // Para obter mais detalhes, confira https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ItemPedidoId,Quantidade,Observacoes,ProdutoId,ClienteId")] ItemPedido itemPedido)
+        public ActionResult Edit([Bind(Include = "ItemPedidoId,Quantidade,Observacoes,ProdutoId,PedidoId")] ItemPedido itemPedido)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +99,7 @@ namespace SistemaOrdemPedidos.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ClienteId = new SelectList(db.Clientes, "ClienteId", "Nome", itemPedido.ClienteId);
+            ViewBag.PedidoId = new SelectList(db.Pedidoes, "PedidoId", "PedidoId", itemPedido.PedidoId);
             ViewBag.ProdutoId = new SelectList(db.Produtoes, "ProdutoId", "Nome", itemPedido.ProdutoId);
             return View(itemPedido);
         }

@@ -26,5 +26,6 @@ namespace SistemaOrdemPedidos.Models
         public System.Data.Entity.DbSet<SistemaOrdemPedidos.Models.Pedido> Pedidoes { get; set; }
 
         public System.Data.Entity.DbSet<SistemaOrdemPedidos.Models.ItemPedido> ItemPedidoes { get; set; }
+
     }
 }

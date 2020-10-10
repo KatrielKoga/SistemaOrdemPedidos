@@ -1,0 +1,44 @@
+﻿@model SistemaOrdemPedidos.Models.Pedido
+
+@{
+    ViewBag.Title = "Detalhes do Pedido";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Pedido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Cliente")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Nome)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayName("Hora Pedido")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataHora.TimeOfDay)
+        </dd>
+        
+
+    </dl>
+</div>
+
+<div>
+    <div class="col-md-offset-2 col-md-10">
+        @Html.ActionLink("Detalhes Produtos", "Index", "ItemPedidoes")
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.PedidoId }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

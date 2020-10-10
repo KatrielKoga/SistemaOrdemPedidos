@@ -8,7 +8,7 @@ using System.Web;
 
 namespace SistemaOrdemPedidos.Models
 {
-    public class Pedido
+    public class Pedido 
     {
         [Key]
         public int PedidoId { get; set; }
@@ -22,9 +22,12 @@ namespace SistemaOrdemPedidos.Models
         public DateTime DataHora { get; set; }
 
         [Required]
+        [Display(Name = "Cliente")]
         public int ClienteId { get; set; }
         public virtual Cliente Cliente { get; set; }
 
         public virtual ICollection<ItemPedido> ItensPedido { get; set; }
+        
+
     }
 }

@@ -24,6 +24,7 @@ namespace SistemaOrdemPedidos.Models
 
         [Required]
         [Display(Name = "Preço")]
+        [DisplayFormat(DataFormatString ="{0:C2}", ApplyFormatInEditMode = false)]
         public decimal Preco { get; set; }
 
         private bool atv = true;
@@ -31,5 +32,6 @@ namespace SistemaOrdemPedidos.Models
         public bool Ativo { get { return atv; } set { atv = value; } }
 
         public virtual ICollection<ItemPedido> ItensPedido { get; set; }
+
     }
 }
