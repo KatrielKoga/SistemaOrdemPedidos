@@ -15,14 +15,14 @@ namespace SistemaOrdemPedidos.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Sistema Ordem de Pedidos";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contato";
 
             return View();
         }
